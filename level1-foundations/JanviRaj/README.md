@@ -1,4 +1,16 @@
-# Level 1 Submission - [YourGitHubHandle]
+# Level 1: Network Foundations Submission 
+
+## Contributor: [Janvi75](https://github.com/Janvi75)
+
+## Objective
+
+Design and implement a functional SOHO (Small Office/Home Office) network in Cisco Packet Tracer using:
+
+- **2 PCs**
+- **1 Switch**
+- **1 Router**
+
+The goal is to ensure full end-to-end connectivity between the devices using static IP addressing.
 
 This file demonstrates the completed Level 1 task as per the submission requirements.
 
@@ -8,9 +20,10 @@ This file demonstrates the completed Level 1 task as per the submission requirem
 
 A simple SOHO network was created using:
 
-- 2 PCs
-- 1 Switch
-- 1 Router
+- **Router Model:** 1941 Router0
+- **Switch Model:** 2960-24TT Switch0
+- **PCs:** PC0, PC1
+
 
 ![Network Topology](topology.png)
 
