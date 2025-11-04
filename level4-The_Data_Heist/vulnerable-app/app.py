@@ -1,5 +1,7 @@
 from flask import Flask, request, send_file, render_template_string
 import os
+from cryptography.fernet import Fernet
+from key import key as KEY
 
 app = Flask(__name__)
 
@@ -43,12 +45,14 @@ TEMPLATE = """
 """
 
 def encrypt(text, key):
-    return ''.join(chr(ord(c) ^ ord(key[i % len(key)])) for i, c in enumerate(text))
+    f = Fernet(key)
+    encrypted = f.encrypt(text.encode())
+    return encrypted.decode()
 
 def decrypt(text, key):
-    return ''.join(chr(ord(c) ^ ord(key[i % len(key)])) for i, c in enumerate(text))
-
-KEY = "???figure it out bish :D"
+    f = Fernet(key)
+    decrypted = f.decrypt(text.encode())
+    return decrypted.decode()
 
 @app.route('/', methods=['GET'])
 def file_viewer():
@@ -58,7 +62,7 @@ def file_viewer():
 
     if filename:
         
-            file_path = os.path.join(os.getcwd(), 'files', filename)
+            file_path = os.path.join(os.getcwd(), 'level4-The_Data_Heist/vulnerable-app/files', filename)
             if (".." in filename) or os.path.isabs(filename):
               error = "Invalid filename."
             else:
@@ -77,9 +81,9 @@ def file_viewer():
 
 if __name__ == '__main__':
     # Create a dummy 'files' directory and a welcome file inside it for the app to read
-    if not os.path.exists('files'):
-        os.makedirs('files')
-    with open('files/welcome.txt', 'w') as f:
+    if not os.path.exists('level4-The_Data_Heist/vulnerable-app/files'):
+        os.makedirs('level4-The_Data_Heist/vulnerable-app/files')
+    with open('level4-The_Data_Heist/vulnerable-app/files/welcome.txt', 'w') as f:
         en=encrypt('Welcome to the Innovatech file viewer!', KEY)
         f.write(en)
     
